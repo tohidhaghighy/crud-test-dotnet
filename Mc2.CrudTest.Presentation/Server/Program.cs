@@ -4,6 +4,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Carter;
 using Mc2.CrudTest.Presentation.Server;
+using Microsoft.AspNetCore.Builder;
 
 namespace Mc2.CrudTest.Presentation
 {
@@ -21,11 +22,12 @@ namespace Mc2.CrudTest.Presentation
             // Add services to the container.
             string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<CustomerDbContext>(options =>options.UseSqlServer(connectionString));
-
-            builder.Services.AddControllersWithViews();
             
 
             var app = builder.Build();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

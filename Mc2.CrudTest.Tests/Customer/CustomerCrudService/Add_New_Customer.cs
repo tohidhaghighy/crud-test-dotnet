@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using System.Threading.Tasks;
+using Mc2.CrudTest.Domain.Entities.Customer;
 
 namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
 {
@@ -11,7 +12,7 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
     {
         [Theory]
         [MemberData(nameof(Data))]
-        public void Add_New_Customer(Customer customer)
+        public void Add_New_Customer()
         {
             // Arrange
             var service = new CustomerService();

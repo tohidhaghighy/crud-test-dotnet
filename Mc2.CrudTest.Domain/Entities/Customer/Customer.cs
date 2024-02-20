@@ -11,29 +11,28 @@ namespace Mc2.CrudTest.Domain.Entities.Customer
 {
     public class Customer:BaseEntity<Guid>
     {
-        
         public PhoneNumber PhoneNumber { get; private set; }
         public Email Email { get; private set; }
         public BankAccountNumber BankAccountNumber { get; private set; }
         public CustomerInfo CustomerInfo { get; private set; }
 
-        public void UpdateInfo(CustomerInfo customerInfo)
+        public CustomerInfo UpdateInfo(CustomerInfo customerInfo)
         {
-            this.CustomerInfo = customerInfo;
+            return this.CustomerInfo = customerInfo;
         }
-        public void SetPhoneNumber(PhoneNumber phoneNumber)
+        public PhoneNumber SetPhoneNumber(PhoneNumber phoneNumber)
         {
-            this.PhoneNumber = phoneNumber;
-        }
-
-        public void SetEmail(Email email)
-        {
-            this.Email = email;
+            return this.PhoneNumber = phoneNumber;
         }
 
-        public void SetBankAccountNumber(BankAccountNumber bankAccountNumber)
+        public Email SetEmail(Email email)
         {
-            this.BankAccountNumber = bankAccountNumber;
+            return this.Email = email;
+        }
+
+        public BankAccountNumber SetBankAccountNumber(BankAccountNumber bankAccountNumber)
+        {
+            return this.BankAccountNumber = bankAccountNumber;
         }
     }
 }
