@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using Mc2.CrudTest.Infrastructure.Data;
 using System;
+using Microsoft.EntityFrameworkCore;
+using Carter;
+using Mc2.CrudTest.Presentation.Server;
 
 namespace Mc2.CrudTest.Presentation
 {
@@ -10,12 +13,17 @@ namespace Mc2.CrudTest.Presentation
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var appPartsAssemblies = ApplicationPartDiscovery.FindAssemblies();
+            builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(appPartsAssemblies));
+            builder.Services.AddCarter(new DependencyContextAssemblyCatalog(appPartsAssemblies));
+            builder.Services.AddSwaggerGen();
+
             // Add services to the container.
-            string? connectionString = builder.Configuration.GetConnectionString("SqliteConnection");
-            builder.Services.AddDbContext<CustomerDbContext>(options =>options.Use(connectionString));
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<CustomerDbContext>(options =>options.UseSqlServer(connectionString));
 
             builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
+            
 
             var app = builder.Build();
 
@@ -33,15 +41,10 @@ namespace Mc2.CrudTest.Presentation
 
             app.UseHttpsRedirection();
 
-            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
-
-
-            app.MapRazorPages();
             app.MapControllers();
-            app.MapFallbackToFile("index.html");
 
             app.Run();
         }

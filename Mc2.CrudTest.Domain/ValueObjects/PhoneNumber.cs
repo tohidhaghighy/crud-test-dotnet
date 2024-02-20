@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneNumbers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,15 @@ namespace Mc2.CrudTest.Domain.ValueObjects
 {
     public record PhoneNumber
     {
+        private readonly PhoneNumberUtil phoneUtil = PhoneNumberUtil.GetInstance();
         public string Number { get; set; }
         public PhoneNumber(string number) 
         { 
             this.Number = number;
-            if (!Regex.IsMatch(number, @"/d{3}-/d{3}-/d{4}"))
+            string countryCode = "US";
+            PhoneNumbers.PhoneNumber phoneNumber = phoneUtil.Parse(number, countryCode);
+            bool isValidNumber = phoneUtil.IsValidNumber(phoneNumber);
+            if (!isValidNumber)
             {
                 throw new Exception("This is not number format");
             }

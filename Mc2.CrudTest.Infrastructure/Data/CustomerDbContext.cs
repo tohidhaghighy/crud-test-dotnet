@@ -14,6 +14,11 @@ namespace Mc2.CrudTest.Infrastructure.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<Customer> Customers { get; set; }
     }
 }
