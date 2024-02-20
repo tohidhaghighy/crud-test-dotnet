@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Domain.ValueObjects
 {
-    public class BankAccountNumber
+    public record BankAccountNumber
     {
         public string BankAccount { get; set; }
         public BankAccountNumber(string bankAcount)

@@ -12,19 +12,28 @@ namespace Mc2.CrudTest.Domain.Entities.Customer
     public class Customer:BaseEntity<Guid>
     {
         
-        public PhoneNumber PhoneNumber { get; }
-        public Email Email { get; }
-        public BankAccountNumber BankAccountNumber { get; }
+        public PhoneNumber PhoneNumber { get; private set; }
+        public Email Email { get; private set; }
+        public BankAccountNumber BankAccountNumber { get; private set; }
         public CustomerInfo CustomerInfo { get; private set; }
 
         public void UpdateInfo(CustomerInfo customerInfo)
         {
             this.CustomerInfo = customerInfo;
         }
+        public void SetPhoneNumber(PhoneNumber phoneNumber)
+        {
+            this.PhoneNumber = phoneNumber;
+        }
 
+        public void SetEmail(Email email)
+        {
+            this.Email = email;
+        }
 
-
+        public void SetBankAccountNumber(BankAccountNumber bankAccountNumber)
+        {
+            this.BankAccountNumber = bankAccountNumber;
+        }
     }
-    public record CustomerInfo(string FirstName, string LastName, DateTime DateOfBirth);
-
 }

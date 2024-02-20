@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Domain.ValueObjects
 {
-    public class Email
+    public record Email
     {
         private string EmailAddress { get; set; }
         public Email(string email)
