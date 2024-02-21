@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Carter;
 using Mc2.CrudTest.Presentation.Server;
 using Microsoft.AspNetCore.Builder;
+using Mc2.CrudTest.Domain.Interfaces.Customer;
+using Mc2.CrudTest.Services.Services;
 
 namespace Mc2.CrudTest.Presentation
 {
@@ -13,16 +15,15 @@ namespace Mc2.CrudTest.Presentation
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            var appPartsAssemblies = ApplicationPartDiscovery.FindAssemblies();
-            builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(appPartsAssemblies));
-            builder.Services.AddCarter(new DependencyContextAssemblyCatalog(appPartsAssemblies));
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+            builder.Services.AddCarter();
+            builder.Services.AddEndpointsApiExplorer(); 
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddControllersWithViews();
             // Add services to the container.
             string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<CustomerDbContext>(options =>options.UseSqlServer(connectionString));
-            
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
 
             var app = builder.Build();
 
@@ -43,10 +44,9 @@ namespace Mc2.CrudTest.Presentation
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();
-
             app.UseRouting();
             app.MapControllers();
+            app.MapCarter();
 
             app.Run();
         }

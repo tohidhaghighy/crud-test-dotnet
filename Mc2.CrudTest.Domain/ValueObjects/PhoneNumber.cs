@@ -10,11 +10,10 @@ namespace Mc2.CrudTest.Domain.ValueObjects
 {
     public record PhoneNumber
     {
-        private readonly PhoneNumberUtil phoneUtil = PhoneNumberUtil.GetInstance();
-        public string Number { get; set; }
+        public string Number { get; private set; }
         public PhoneNumber(string number) 
-        { 
-            this.Number = number;
+        {
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.GetInstance();
             string countryCode = "US";
             PhoneNumbers.PhoneNumber phoneNumber = phoneUtil.Parse(number, countryCode);
             bool isValidNumber = phoneUtil.IsValidNumber(phoneNumber);
@@ -22,6 +21,23 @@ namespace Mc2.CrudTest.Domain.ValueObjects
             {
                 throw new Exception("This is not number format");
             }
+            this.Number = number;
+        }
+
+        public PhoneNumber()
+        {
+        }
+        public static PhoneNumber? Create(string number)
+        {
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.GetInstance();
+            string countryCode = "US";
+            PhoneNumbers.PhoneNumber phoneNumber = phoneUtil.Parse(number, countryCode);
+            bool isValidNumber = phoneUtil.IsValidNumber(phoneNumber);
+            if (!isValidNumber)
+            {
+                throw new Exception("This is not number format");
+            }
+            return new PhoneNumber(number);
         }
     }
 }

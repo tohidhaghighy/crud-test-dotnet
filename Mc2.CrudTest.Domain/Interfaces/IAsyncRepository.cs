@@ -18,6 +18,6 @@ namespace Mc2.CrudTest.Domain.Interfaces
 
         Task<T> GetAsync(Expression<Func<T, bool>> expression);
 
-        Task<List<T>> ListAsync(Expression<Func<T, bool>> expression);
+        Task<List<T>> ListAsync(Expression<Func<T, bool>>? expression);
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using Xunit;
 using System.Threading.Tasks;
 using Mc2.CrudTest.Domain.Entities.Customer;
+using Mc2.CrudTest.Services.Services;
 
 namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
 {
@@ -19,7 +20,7 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
 
             // Act
 
-            var customer = service.AddCustomer(customer);
+            var customer = service.AddAsync(customer);
 
             // Assert
             Assert.NotNull(customer);

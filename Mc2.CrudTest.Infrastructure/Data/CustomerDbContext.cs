@@ -1,22 +1,21 @@
 ﻿using Mc2.CrudTest.Domain.Entities.Customer;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Infrastructure.Data
 {
-    public class CustomerDbContext: DbContext
+    public class CustomerDbContext : DbContext
     {
-        public CustomerDbContext(DbContextOptions options) : base(options)
-        {
-        }
+        public CustomerDbContext(DbContextOptions<CustomerDbContext> options)
+      : base(options)
+        { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            modelBuilder.Entity<Customer>().OwnsOne(p => p.CustomerInfo);
+            modelBuilder.Entity<Customer>().OwnsOne(p => p.Email);
+            modelBuilder.Entity<Customer>().OwnsOne(p => p.BankAccountNumber);
+            modelBuilder.Entity<Customer>().OwnsOne(p => p.PhoneNumber);
+            modelBuilder.Entity<Customer>().HasIndex(b => new { b.Email }).IsUnique();
         }
 
         public DbSet<Customer> Customers { get; set; }

@@ -9,14 +9,27 @@ namespace Mc2.CrudTest.Domain.ValueObjects
 {
     public record Email
     {
-        private string EmailAddress { get; set; }
+        public string email { get; private set; }
         public Email(string email)
         {
-            this.EmailAddress = email;
             if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
             {
                 throw new Exception("This is not email format");
             }
+            this.email = email;
+        }
+
+        public Email()
+        {
+        }
+
+        public static Email? Create(string email)
+        {
+            if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                throw new Exception("This is not email format");
+            }
+            return new Email(email);
         }
     }
 }
