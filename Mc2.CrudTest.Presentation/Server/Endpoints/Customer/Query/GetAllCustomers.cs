@@ -33,7 +33,7 @@ namespace Mc2.CrudTest.Presentation.Server.Endpoints.Customer.Query
                 List<Domain.Entities.Customer.Customer> result = new();
                 try
                 {
-                    result = await customerService.ListAsync(a => a.Email.email == "");
+                    result = await customerService.ListAsync(a => a.Email.email != "");
                 }
                 catch (Exception ex)
                 {

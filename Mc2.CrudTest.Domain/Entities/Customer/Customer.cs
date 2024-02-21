@@ -17,6 +17,7 @@ namespace Mc2.CrudTest.Domain.Entities.Customer
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
             this.BankAccountNumber = BankAccountNumber;
+            this.CustomerInfo = CustomerInfo;
         }
 
         public Customer()
