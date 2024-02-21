@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Mc2.CrudTest.Domain.ValueObjects;
+using Mc2.CrudTest.Services.Services;
+using Mc2.CrudTest.Tests.Fixtures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Xunit;
 using System.Threading.Tasks;
-using Mc2.CrudTest.Domain.Entities.Customer;
-using Mc2.CrudTest.Services.Services;
-using Mc2.CrudTest.Tests.Fixtures;
-using Azure.Core;
-using Mc2.CrudTest.Domain.ValueObjects;
 
-namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
+namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
 {
-    public class Add_New_Customer: InMemoryRequestDbFixture
+    public class CustomerService_AddCustomer_InsertUniqueEmail_Success : InMemoryRequestDbFixture
     {
         [Fact]
-        public async Task AddNewCustomer()
+        public async Task CustomerServiceAddCustomerInsertUniqueEmailSuccess()
         {
             // Arrange
             var data = new Domain.Entities.Customer.Customer
@@ -29,12 +26,12 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
 
             // Act
 
-            var customer = await service.AddAsync(data);
+            var customer1 = await service.AddAsync(data);
+            var customer2 = await service.AddAsync(data);
 
             // Assert
-            Assert.NotNull(customer.Id);
+            Assert.NotNull(customer2.Id);
 
         }
-
     }
 }

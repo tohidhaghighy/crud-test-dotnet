@@ -34,7 +34,6 @@
   <ItemGroup>
     <Folder Include="Endpoints\Customer\Dtos\Responce\" />
     <Folder Include="Endpoints\Customer\Dtos\Request\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 

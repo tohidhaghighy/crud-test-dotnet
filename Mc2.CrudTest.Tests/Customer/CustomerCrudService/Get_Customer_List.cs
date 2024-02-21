@@ -4,33 +4,28 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using System.Threading.Tasks;
+using Mc2.CrudTest.Tests.Fixtures;
+using Mc2.CrudTest.Domain.ValueObjects;
+using Mc2.CrudTest.Services.Services;
 
 namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
 {
-    public class Get_Customer_List
+    public class Get_Customer_List: InMemoryRequestDbFixture
     {
-        [Theory]
-        [MemberData(nameof(Data))]
-        public void Get_Customer_List(Customer customer)
+        [Fact]
+        public async Task GetCustomerList()
         {
             // Arrange
-            var service = new CustomerService();
+
+             var service = new CustomerService(DbContext);
 
             // Act
-
-            var customer = service.AddCustomer(customer);
+            var Insertedcustomer = await service.AddAsync(data);
+            var customer = await service.GetAsync(a=>a.Email.email!="");
 
             // Assert
             Assert.NotNull(customer);
 
-        }
-
-        public static IEnumerable<Customer> Data()
-        {
-            yield return new Customer { new Customer() { } };
-            yield return new Customer { new Customer() { } };
-            yield return new Customer { new Customer() { } };
-            yield return new Customer { new Customer() { } };
         }
     }
 }

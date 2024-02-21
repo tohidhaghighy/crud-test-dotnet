@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="xunit" Version="2.7.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
@@ -24,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mc2.CrudTest.Domain\Mc2.CrudTest.Domain.csproj" />
+    <ProjectReference Include="..\Mc2.CrudTest.Infrastructure\Mc2.CrudTest.Infrastructure.csproj" />
     <ProjectReference Include="..\Mc2.CrudTest.Services\Mc2.CrudTest.Services.csproj" />
   </ItemGroup>
 
