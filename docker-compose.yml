@@ -1,32 +1,19 @@
-﻿version: '3.4'
-
-x-var: &AEROSPIKE_NAMESPACE session-provider
+version: '3.4'
 
 services:
-  middleware:
-    container_name: middleware
-    depends_on: 
-      aerospike:
-        condition: service_healthy
-    build: 
+   SqlServerDb:
+     container_name: SqlServerContainer
+     image: mcr.microsoft.com/mssql/server:2017-latest
+     ports:
+         - 8002:1433
+     environment:
+         - ACCEPT_EULA=Y
+         - MSSQL_SA_PASSWORD=myStong_Password123# 
+  WebApi:
+    container_name: WebApiContainer
+    image: ${DOCKER_REGISTRY-}mc2crudtestpresentationserver
+    build:
       context: .
-      dockerfile: src/FarabixoMiddleware/Dockerfile
-    environment:
-      Aerospike:Namespace: *AEROSPIKE_NAMESPACE
-      Aerospike:Set: Beta
-      Aerospike:Hosts: aerospike:3000
-    ports:
-      - 7000:80
-  
-  aerospike:
-    image: aerospike/aerospike-server
-    attach: false
-    environment:
-      NAMESPACE: *AEROSPIKE_NAMESPACE
-    logging:
-      driver: none
-    healthcheck:
-      test: asinfo -v STATUS
-      interval: 1s
-      timeout: 1s
-      retries: 20
+      dockerfile: Mc2.CrudTest.Presentation/Server/Dockerfile
+    depends_on:
+         - SqlServerDb

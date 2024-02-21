@@ -11,13 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mc2.CrudTest.Presentation.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mc2.CrudTest.AcceptanceTests", "Mc2.CrudTest.AcceptanceTests\Mc2.CrudTest.AcceptanceTests.csproj", "{6776DF76-1054-486C-A79A-57100C47032F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mc2.CrudTest.Tests", "Mc2.CrudTest.Tests\Mc2.CrudTest.Tests.csproj", "{E949671A-D748-4BBA-930C-EDDA0918EA08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mc2.CrudTest.Tests", "Mc2.CrudTest.Tests\Mc2.CrudTest.Tests.csproj", "{E949671A-D748-4BBA-930C-EDDA0918EA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mc2.CrudTest.Services", "Mc2.CrudTest.Services\Mc2.CrudTest.Services.csproj", "{146B9943-31B6-44E4-BA7F-78BF8BCBD24C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mc2.CrudTest.Services", "Mc2.CrudTest.Services\Mc2.CrudTest.Services.csproj", "{146B9943-31B6-44E4-BA7F-78BF8BCBD24C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mc2.CrudTest.Infrastructure", "Mc2.CrudTest.Infrastructure\Mc2.CrudTest.Infrastructure.csproj", "{CC41CF01-813E-454E-961C-69B8C00B89E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mc2.CrudTest.Infrastructure", "Mc2.CrudTest.Infrastructure\Mc2.CrudTest.Infrastructure.csproj", "{CC41CF01-813E-454E-961C-69B8C00B89E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mc2.CrudTest.Domain", "Mc2.CrudTest.Domain\Mc2.CrudTest.Domain.csproj", "{C9202E3B-ECF9-4D5E-9CBB-0D7EA63411BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mc2.CrudTest.Domain", "Mc2.CrudTest.Domain\Mc2.CrudTest.Domain.csproj", "{C9202E3B-ECF9-4D5E-9CBB-0D7EA63411BC}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5359D18D-E0D9-46CD-A5A4-7C735FB6CC58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{C9202E3B-ECF9-4D5E-9CBB-0D7EA63411BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9202E3B-ECF9-4D5E-9CBB-0D7EA63411BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9202E3B-ECF9-4D5E-9CBB-0D7EA63411BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5359D18D-E0D9-46CD-A5A4-7C735FB6CC58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5359D18D-E0D9-46CD-A5A4-7C735FB6CC58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5359D18D-E0D9-46CD-A5A4-7C735FB6CC58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5359D18D-E0D9-46CD-A5A4-7C735FB6CC58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
