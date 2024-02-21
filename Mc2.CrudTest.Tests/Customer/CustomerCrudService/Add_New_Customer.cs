@@ -9,7 +9,7 @@ using Mc2.CrudTest.Services.Services;
 
 namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
 {
-    public class Add_New_Customer
+    public class Add_New_Customer:DatabaseFixture
     {
         [Theory]
         [MemberData(nameof(Data))]
