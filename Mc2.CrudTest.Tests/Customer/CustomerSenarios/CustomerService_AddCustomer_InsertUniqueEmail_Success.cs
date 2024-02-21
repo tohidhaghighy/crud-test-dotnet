@@ -1,4 +1,5 @@
-﻿using Mc2.CrudTest.Domain.ValueObjects;
+﻿using Mc2.CrudTest.Domain.Entities.Customer;
+using Mc2.CrudTest.Domain.ValueObjects;
 using Mc2.CrudTest.Services.Services;
 using Mc2.CrudTest.Tests.Fixtures;
 using System;
@@ -14,6 +15,7 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
         [Fact]
         public async Task CustomerServiceAddCustomerInsertUniqueEmailSuccess()
         {
+            string error_Message = "";
             // Arrange
             var data = new Domain.Entities.Customer.Customer
                         (
@@ -25,12 +27,17 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
             var service = new CustomerService(DbContext);
 
             // Act
-
-            var customer = await service.AddAsync(data);
+            try
+            {
+                var customer = await service.AddAsync(data);
+            }
+            catch (Exception ex)
+            {
+                error_Message= ex.Message;
+            }
 
             // Assert
-            Assert.NotNull(customer.Id);
-
+            Assert.NotEqual(error_Message,"");
         }
     }
 }

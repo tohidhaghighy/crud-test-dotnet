@@ -15,22 +15,30 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
         [Fact]
         public async Task CustomerServiceAddCustomerInValideEmailFailure()
         {
-            // Arrange
-            var data = new Domain.Entities.Customer.Customer
-                        (
-                        PhoneNumber.Create("+989144967941"),
-                        Email.Create("444.com"),
-                        BankAccountNumber.Create("3333333333333"),
-                        new Domain.Entities.Customer.CustomerInfo("tohid1", "haghighi2", DateTime.Now)
-                        );
-            var service = new CustomerService(DbContext);
-
+            bool valid = true;
+            
             // Act
+            try
+            {
+                // Arrange
+                var data = new Domain.Entities.Customer.Customer
+                            (
+                            PhoneNumber.Create("+989144967941"),
+                            Email.Create("444.com"),
+                            BankAccountNumber.Create("3333333333333"),
+                            new Domain.Entities.Customer.CustomerInfo("tohid1", "haghighi2", DateTime.Now)
+                            );
+                var service = new CustomerService(DbContext);
 
-            var customer = await service.AddAsync(data);
+                var customer = await service.AddAsync(data);
+            }
+            catch (Exception ex)
+            {
+                valid = false;
+            }
 
             // Assert
-            Assert.NotNull(customer.Id);
+            Assert.False(valid);
 
         }
     }

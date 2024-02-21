@@ -21,7 +21,7 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
             var data = new Domain.Entities.Customer.Customer
                         (
                         PhoneNumber.Create("+989144967941"),
-                        Email.Create("soshyant@gmail.com"),
+                        Email.Create("tsoshyant@gmail.com"),
                         BankAccountNumber.Create("3333333333333"),
                         new Domain.Entities.Customer.CustomerInfo("tohid", "haghighi", DateTime.Now)
                         );

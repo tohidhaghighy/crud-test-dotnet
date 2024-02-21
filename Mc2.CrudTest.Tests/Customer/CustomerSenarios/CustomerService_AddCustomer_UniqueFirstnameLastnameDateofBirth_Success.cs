@@ -12,11 +12,14 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
 {
     public class CustomerService_AddCustomer_UniqueFirstnameLastnameDateofBirth_Success : InMemoryRequestDbFixture
     {
+        
+
         [Fact]
         public async Task CustomerServiceAddCustomerUniqueFirstnameLastnameDateofBirthSuccess()
         {
-            // Arrange
-            var data = new Domain.Entities.Customer.Customer
+            string error_Message="";
+        // Arrange
+        var data = new Domain.Entities.Customer.Customer
                         (
                         PhoneNumber.Create("+989144967941"),
                         Email.Create("soshyant@gmail.com"),
@@ -26,11 +29,17 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
             var service = new CustomerService(DbContext);
 
             // Act
-
-            var customer = await service.AddAsync(data);
+            try
+            {
+                var customer = await service.AddAsync(data);
+            }
+            catch (Exception ex)
+            {
+                error_Message = ex.Message;
+            }
 
             // Assert
-            Assert.NotNull(customer.Id);
+            Assert.NotEqual(error_Message,"");
 
         }
     }
