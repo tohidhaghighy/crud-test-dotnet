@@ -18,7 +18,7 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
             // Arrange
             var data = new Domain.Entities.Customer.Customer
                         (
-                        PhoneNumber.Create("+989144967941"),
+                        PhoneNumber.Create("+98941"),
                         Email.Create("soshyant@gmail.com"),
                         BankAccountNumber.Create("3333333333333"),
                         new Domain.Entities.Customer.CustomerInfo("tohid", "haghighi", DateTime.Now)
@@ -27,11 +27,10 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
 
             // Act
 
-            var customer1 = await service.AddAsync(data);
-            var customer2 = await service.AddAsync(data);
+            var customer = await service.AddAsync(data);
 
             // Assert
-            Assert.NotNull(customer2.Id);
+            Assert.NotNull(customer.Id);
 
         }
     }

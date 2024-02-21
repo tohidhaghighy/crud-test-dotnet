@@ -20,7 +20,6 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerCrudService
              var service = new CustomerService(DbContext);
 
             // Act
-            var Insertedcustomer = await service.AddAsync(data);
             var customer = await service.GetAsync(a=>a.Email.email!="");
 
             // Assert

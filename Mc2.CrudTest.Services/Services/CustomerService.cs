@@ -24,6 +24,20 @@ namespace Mc2.CrudTest.Services.Services
         public async Task<Customer> AddAsync(Customer entity)
         {
             var customer = new Customer(entity.PhoneNumber, entity.Email, entity.BankAccountNumber, entity.CustomerInfo);
+            var findcustomer= DbContext.Customers
+                .Where(a=>a.CustomerInfo.FirstName==entity.CustomerInfo.FirstName &&
+                a.CustomerInfo.LastName == entity.CustomerInfo.LastName &&
+                a.CustomerInfo.DateOfBirth == entity.CustomerInfo.DateOfBirth).FirstOrDefault();
+            if (findcustomer != null)
+            {
+                throw new Exception("Customers must be unique in the database: By Firstname, Lastname, and DateOfBirth");
+            }
+            var findcustomerwithemail = DbContext.Customers
+                .Where(a => a.Email.email == entity.Email.email).FirstOrDefault();
+            if (findcustomerwithemail != null)
+            {
+                throw new Exception("Email must be unique in the database.");
+            }
 
             await DbContext.Customers.AddAsync(customer);
             await DbContext.SaveChangesAsync();

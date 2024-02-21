@@ -19,19 +19,18 @@ namespace Mc2.CrudTest.Tests.Customer.CustomerBusinessService
             var data = new Domain.Entities.Customer.Customer
                         (
                         PhoneNumber.Create("+989144967941"),
-                        Email.Create("soshyant@gmail.com"),
-                        BankAccountNumber.Create("3333333333333"),
-                        new Domain.Entities.Customer.CustomerInfo("tohid", "haghighi", DateTime.Now)
+                        Email.Create("test@gmail.com"),
+                        BankAccountNumber.Create("23-34"),
+                        new Domain.Entities.Customer.CustomerInfo("test", "test", DateTime.Now)
                         );
             var service = new CustomerService(DbContext);
 
             // Act
 
-            var customer1 = await service.AddAsync(data);
-            var customer2 = await service.AddAsync(data);
+            var customer = await service.AddAsync(data);
 
             // Assert
-            Assert.NotNull(customer2.Id);
+            Assert.NotNull(customer.Id);
 
         }
     }
